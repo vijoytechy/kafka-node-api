@@ -1,0 +1,25 @@
+{
+  "name": "kafka-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --env-file=.env app.js"
+  },
+  "keywords": [
+    "kafka-node"
+  ],
+  "author": "vijoy t abraham",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@confluentinc/kafka-javascript": "^0.2.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
