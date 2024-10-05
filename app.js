@@ -4,7 +4,7 @@ const cors = require('cors');
 const { Kafka } = require("@confluentinc/kafka-javascript").KafkaJS;
 const WebSocket = require('ws');
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for the port
+const port = process.env.PORT || 3000; // Same port for both HTTP and WebSocket
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -63,7 +63,12 @@ async function produceBookingUpdate(bookingDetails) {
     console.log("Disconnected from Kafka successfully");
 }
 
-const wss = new WebSocket.Server({ port: 8080 });
+// Create a WebSocket server using the same HTTP server
+const server = app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+
+const wss = new WebSocket.Server({ server });
 wss.on('connection', (ws) => {
     console.log('Client connected');
 
@@ -125,7 +130,3 @@ async function runConsumer() {
 }
 
 runConsumer().catch((error) => console.error('ERROR TO START Kafka consumer', error));
-
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-});
