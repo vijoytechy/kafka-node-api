@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --env-file=.env app.js",
-    "prod":"node --env-file=.env app.js"
+    "prod":"node app.js"
   },
   "keywords": [
     "kafka-node"
